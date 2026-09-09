@@ -9,3 +9,5 @@ openai
 torch
 transformers
 kagglehub
+sqlite3
+uvicorn

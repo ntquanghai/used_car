@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles/styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+<script type = "module">
+    import {loadResults, loadErrorDistribution, loadErrorQuartiles, 
+        loadTopErrors, renderResultsTable, renderErrorDistributionBarChart,
+        renderErrorQuartilesTable, loadShap, renderTopShapFeatures
+    } from "./src/pages/results.js"
+    loadResults().then(data => {
+        renderResultsTable(data[0]);
+    });
+
+    loadErrorQuartiles().then(data =>{renderErrorQuartilesTable(data)});
+    loadErrorDistribution().then(data =>{renderErrorDistributionBarChart(data)});
+    loadTopErrors().then(data =>{});
+    loadShap().then(data =>{renderTopShapFeatures(data)});
+
+    import { renderHeader } from "./src/pages/header.js";
+    renderHeader("performance");
+
+</script>
+
+<body>
+<div class="dashboard">
+
+    <header id="header"></header>
+    <main class="results-layout">
+        <section class="card metrics-card">
+            <h3>Model Metrics</h3>
+            <div id="resultsTable"></div>
+        </section>
+
+        <section class="card error-card">
+            <h3>Error Analysis</h3>
+                <div class="card-two-rows">
+                    <div class="card-row">
+                        <h4>Error Distribution</h4>
+                        <div class="chart-box">
+                            <canvas id="errorDistribution"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="card-row">
+                        <h4>Error Quartiles</h4>
+                        <div id="errorQuartiles"></div>
+                    </div>
+                </div>
+        </section>
+
+        <section class="card explainability-card ">
+            <h3>Model Explainability</h3>
+            <canvas id="explainability" class="shap-chart-box"></canvas>
+        </section>
+    </main>
+</div>
+
+</body>
+</html>

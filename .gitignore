@@ -2,3 +2,5 @@
 *.json
 *.csv
 *.parquet
+*.db
+node_modules/

@@ -16,10 +16,11 @@ CREATE TABLE vehicles (
     state VARCHAR(20),
     lat REAL,
     long REAL,
-    posting_day INTEGER,
-    posting_month INTEGER,
-    posting_year INTEGER,
-    posting_weekday INTEGER,
+    posting_hour INTEGER CHECK (posting_hour >= 0 AND posting_hour <= 23),
+    posting_day INTEGER CHECK (posting_day >= 1 AND posting_day <= 31),
+    posting_month INTEGER CHECK (posting_month >= 1 AND posting_month <= 12),
+    posting_year INTEGER CHECK (posting_year >= 1995 AND posting_year <= 2100),
+    posting_weekday INTEGER CHECK (posting_weekday >= 0 AND posting_weekday <= 6),
     vehicle_age INTEGER,
     miles_per_year REAL
 );
