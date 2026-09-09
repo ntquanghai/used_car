@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles/styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+<script type = "module">
+    import {loadVehicles, renderVehiclesTable, renderPagination, getVehiclePageLimit, onSearch, onOrderBy} from "./src/pages/vehicles.js" 
+    loadVehicles().then(data => {
+        renderVehiclesTable(data)
+    })
+    getVehiclePageLimit().then(pageLimit => {
+        renderPagination(pageLimit)
+    })
+    onSearch()
+    onOrderBy()
+
+    import { renderHeader } from "./src/pages/header.js";
+    renderHeader("search");     
+
+</script>
+
+<body>
+    <div class = "dashboard">
+        <header id="header"></header>
+        <div class = "bg-light mw-100 p-5 mh-100 overflow-y-scroll d-flex flex-column">
+            <div class = "d-flex flex-row mb-4">
+                <nav class="navbar bg-body-tertiary flex-grow-1">
+                    <div class="container-fluid">
+                        <form class="d-flex" role="search" id = "search">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                        </form>
+                    </div>
+                </nav>
+                <select id="selectOrderBy" class="form-select" aria-label="Default select example">
+                </select>
+            </div>
+
+            <div class = "table-fixed-header table-responsive mh-100">
+                <table class="table table-bordered" id="vehicleTable">
+                    
+                </table>
+            </div>
+            <nav class ="mt-4" id = "paginationNavBar">
+            </nav>
+
+        </div>
+    </div>
+</body>
+</html>
