@@ -19,9 +19,12 @@ The final model achieved:
 ## Dashboard
 ### Statistics
 Overview of the dataset and major vehicle-market patterns.
+![Alt text](statistics.png)
 
 ### Vehicle Search
 Search, filter, and inspect individual vehicle listings and predicted prices.
+![Alt text](search.png)
 
 ### Model Performance
 Model metrics, prediction-error analysis, and global SHAP feature importance.
+![Alt text](performance.png)
